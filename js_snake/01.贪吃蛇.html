@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #canvas {
+      box-shadow: 0 0 10px 0;
+      display: block;
+      margin: auto;
+      background-image: url(images/ba.jpg);
+      background-size: 100% 120%;
+    }
+
+    #right {
+      width: 130px;
+      height: 570px;
+      background-color: burlywood;
+      right: 350px;
+      top: 0;
+      padding: 20px;
+      font-size: 20px;
+      position: absolute;
+      left: 0;
+    }
+
+    #score {
+      font-size: 20px;
+      margin-top: 10px
+    }
+    .text {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .inp {
+      width: 80px;
+      height: 30px;
+      outline: none;
+      border-radius: 10px;
+      border: 1px darkseagreen solid;
+      padding-left: 20px;
+    }
+
+    .list {
+      margin-top: 20px;
+    }
+
+    .aa {
+      margin-top: 10px;
+      color: cadetblue;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="800" height="600">
+  </canvas>
+
+  <div id="right">
+    <button class="reset">重新开始</button>
+    <button class="pause">暂停</button>
+    <div id="score">当前分数：<br><span class="sco">0</span></div>
+    <div class="text">初始速度：300</div>
+    <label for="c">调速：</label>
+    <input type="text" value="" class="inp" id="c">
+    <div class="list">排行榜</div>
+    <div class="aa">3000</div>
+    <div class="aa">2000</div>
+    <div class="aa">1000</div>
+    <div class="aa">0</div>
+    <div class="aa">0</div>
+    <div class="aa">0</div>
+    <div class="aa">0</div>
+    <div class="aa">0</div>
+  </div>
+  </div>
+</body>
+<script src="common.js"></script>
+<script src="food.js"></script>
+<script src="snake.js"></script>
+<script src="game.js"></script>
+<script>
+  var canvas = document.querySelector('canvas');
+  var ctx = canvas.getContext('2d');
+  var game = new Game();
+  game.startGame(ctx);
+  var button = document.querySelector(".reset");
+  button.onclick = function () {
+    game.resetGame();
+  }
+
+  var pause = document.querySelector(".pause");
+  var sr = document.querySelector(".src");
+  var inp = document.querySelector(".inp");
+  var a = 1;
+  pause.onclick = function () {
+    if (a == 0) {
+      a = 1;
+      game.time(ctx, inp.value);
+    } else {
+      a = 0;
+      game.pausee();
+    }
+  }
+</script>
+
+</html>
